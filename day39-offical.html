@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day39Offical</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+            border-radius: 2px;
+            box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            color: #fff;
+            background: #16a085;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(130deg,
+                    #f4d03f,
+                    #16a085);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(130deg,
+                    #f4d03f,
+                    #16a085);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            font-family: "Open Sans", Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .menu-icon {
+            position: absolute;
+            z-index: 2;
+            width: 50px;
+            height: 26px;
+            top: 187px;
+            left: 175px;
+            cursor: pointer;
+        }
+
+        .menu-icon .line-top,
+        .menu-icon .line-bottom {
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background: #fff;
+        }
+
+        .menu-icon .line-top {
+            top: 0;
+            animation: line-top-close 1s ease both;
+        }
+
+        .menu-icon .line-bottom {
+            bottom: 0;
+            animation: line-bottom-close 1s ease both;
+        }
+
+        .menu-icon.active .line-top {
+            animation: line-top-open 1s ease both;
+        }
+
+        .menu-icon.active .line-bottom {
+            animation: line-bottom-open 1s ease both;
+        }
+
+        .menu-icon.paused .line-top,
+        .menu-icon.paused .line-bottom {
+            animation: none;
+        }
+
+        .menu {
+            position: absolute;
+            width: 300px;
+            height: 20px;
+            top: 190px;
+            left: 50px;
+            padding: 0 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .menu.active {
+            opacity: 1;
+            pointer-events: all;
+            transition: all 0.5s ease-in-out 0.5s;
+        }
+
+        .menu ul {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            list-style: none;
+            font-size: 16px;
+            line-height: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: 280px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu ul li:hover {
+            opacity: 0.6;
+        }
+
+        @keyframes line-top-open {
+            0% {
+                transform: translate3d(0, 0, 0) scaleY(1) scaleX(1);
+            }
+
+            20% {
+                transform: translate3d(0, 3px, 0) scaleY(1) scaleX(1);
+            }
+
+            40% {
+                transform: translate3d(0, -20px, 0) scaleY(0.5) scaleX(1);
+            }
+
+            100% {
+                transform: translate3d(0, -20px, 0) scaleY(0.5) scaleX(6);
+            }
+        }
+
+        @keyframes line-bottom-open {
+            0% {
+                transform: translate3d(0, 0, 0) scaleY(1) scaleX(1);
+            }
+
+            20% {
+                transform: translate3d(0, -3px, 0) scaleY(1) scaleX(1);
+            }
+
+            40% {
+                transform: translate3d(0, 20px, 0) scaleY(0.5) scaleX(1);
+            }
+
+            100% {
+                transform: translate3d(0, 20px, 0) scaleY(0.5) scaleX(6);
+            }
+        }
+
+        @keyframes line-top-close {
+            0% {
+                transform: translate3d(0, -20px, 0) scaleY(0.5) scaleX(6);
+            }
+
+            60% {
+                transform: translate3d(0, -20px, 0) scaleY(0.5) scaleX(1);
+            }
+
+            100% {
+                transform: translate3d(0, 0, 0) scaleY(1) scaleX(1);
+            }
+        }
+
+        @keyframes line-bottom-close {
+            0% {
+                transform: translate3d(0, 20px, 0) scaleY(0.5) scaleX(6);
+            }
+
+            60% {
+                transform: translate3d(0, 20px, 0) scaleY(0.5) scaleX(1);
+            }
+
+            100% {
+                transform: translate3d(0, 0, 0) scaleY(1) scaleX(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="menu-icon paused">
+            <div class="line-top"></div>
+            <div class="line-bottom"></div>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><span>Home</span></li>
+                <li><span>Work</span></li>
+                <li><span>Life</span></li>
+                <li><span>Spirit</span></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // CLICK IT
+        document.querySelector(".menu-icon").addEventListener("click", function () {
+            document.querySelector(".menu-icon").classList.remove("paused");
+            document.querySelector(".menu-icon").classList.add("active");
+            document.querySelector(".menu").classList.remove("paused");
+            document.querySelector(".menu").classList.add("active");
+        });
+
+        document.querySelector(".menu").addEventListener("click", function () {
+            document.querySelector(".menu-icon").classList.remove("active");
+            document.querySelector(".menu").classList.remove("active");
+        });
+
+    </script>
+</body>
+
+</html>

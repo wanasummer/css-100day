@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day47</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+        .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+            border-radius: 2px;
+            box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: #fff;
+            color: #333;
+            font-family: 'Open Sans', Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .center {
+            display: grid;
+            width: 100%;
+            height: 100%;
+            grid-template-columns: repeat(20, 1fr);
+            grid-template-rows: repeat(20, 1fr);
+        }
+
+        .block {
+            border: 1px solid #e24e3f;
+            background-color: #de4738;
+            z-index: 2;
+        }
+
+        .active {
+            border: none;
+            background-color: #fff;
+        }
+
+        .block:hover:not(.active) {
+            background-color: #ec5142;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="center">
+
+        </div>
+    </div>
+    <script>
+        const center = document.querySelector('.center')
+        for (let row = 1; row <= 20; row++) {
+            for (let col = 1; col <= 20; col++) {
+                const block = document.createElement('div')
+                block.classList.add('block', `col-${col}`, `row-${row}`)
+                block.addEventListener('click',()=>{
+                  block.classList.toggle('active')  
+                })
+                center.appendChild(block)
+            }
+        }
+        //preprocessing head col-10 row-7
+        let col = 10, row = 7
+        for (let i = 2; i <= 10; i += 2) {
+            let c = col, r = row
+            for (let j = 0; j < i; j++) {
+                const cur = document.querySelector(`.col-${c++}.row-${r}`)
+                cur.classList.add('active')
+            }
+            col--;
+            row++;
+        }
+        //preprocessing body col-9 row-12
+        col = 9, row = 12
+        for (let i = 4; i <= 8; i += 2) {
+            let c = col, r = row
+            for (let j = 0; j < i; j++) {
+                const cur = document.querySelector(`.col-${c++}.row-${r}`)
+                cur.classList.add('active')
+            }
+            col--;
+            row++;
+        }
+        //remained
+        const cor = [[15,11],[6,11],[9,10],[12,10],[10,12],[11,12],[9,13],[12,13],[8,14],[10,14],[11,14],[13,14]]
+        for(let c of cor){
+            const cur = document.querySelector(`.col-${c[0]}.row-${c[1]}`)
+            cur.classList.toggle('active')
+        }
+    </script>
+</body>
+
+</html>

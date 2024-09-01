@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day55</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            transition: all .5s ease-in-out;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .frame {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: #2b4147;
+        }
+
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .outer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(transparent 0 135deg, white 135deg 225deg,
+                    transparent 225deg 360deg), linear-gradient(to right, #752b8e, #bc2e69);
+            box-shadow: 2px 5px 2px inset rgba(0, 0, 0, 0.4);
+        }
+
+        .outer:hover {
+            cursor: pointer;
+        }
+
+        .outer .middle .weather-item .weather {
+            translate: 0;
+        }
+
+        .outer:hover .middle .weather-item .weather {
+            translate: -100%;
+        }
+
+        .outer:hover .middle .indicator {
+            rotate: 65deg;
+        }
+
+        .outer:hover .middle .weather-item #one {
+            animation: hd2 .5s ease;
+        }
+
+        .outer .middle .weather-item #one {
+            animation: hd .5s ease reverse;
+        }
+
+        .outer:hover .middle .weather-item #two {
+            animation: hd2 .5s ease reverse;
+        }
+
+        .outer .middle .weather-item #two {
+            animation: hd .5s ease;
+        }
+
+        .middle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: 130px;
+            height: 130px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #989898;
+            font-size: 12px;
+            overflow: hidden;
+        }
+
+        .weather-item {
+            position: relative;
+            display: flex;
+        }
+
+        .weather {
+            flex-shrink: 0;
+            width: 100%;
+            font-size: 60px;
+            line-height: 60px;
+            max-height: 60px;
+            background: linear-gradient(to right, #752b8e, #bc2e69);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .weather span{
+            color: #752b8e;
+            position: relative;
+            font-size: 25px;
+            top: -30px;
+        }
+
+        .place {
+            text-transform: capitalize;
+        }
+
+        .indicator {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            rotate: 45deg;
+        }
+
+        .indicator::before {
+            display: block;
+            content: '';
+            height: 1px;
+            width: 15px;
+            background-color: #6c6c6c;
+        }
+
+        @keyframes hd {
+            to {
+                opacity: 0;
+                scale: 0.5;
+            }
+        }
+
+        @keyframes hd2 {
+            to {
+                opacity: 0;
+                scale: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="main">
+            <div class="outer">
+                <div class="middle">
+                    <div class="max">23°</div>
+                    <div class="weather-item">
+                        <div class="weather" id="one">19<span>°</span></div>
+                        <div class="weather" id="two">20<span>°</span></div>
+                    </div>
+                    <div class="place">bedroom</div>
+                    <div class="indicator"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

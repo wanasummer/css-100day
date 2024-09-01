@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day51</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+            border-radius: 2px;
+            box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: #fff;
+            color: #333;
+            font-family: 'Open Sans', Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #313c46;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            margin-top: 10%;
+        }
+
+        .timer {
+            width: 100px;
+            height: 40px;
+            padding: 0 5px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .number {
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                line-height: 40px;
+                font-size: 30px;
+                color: #478bb8;
+            }
+        }
+
+        .btn {
+            width: 16px;
+            height: 20px;
+            border: 4px solid #fff;
+            border-top: none;
+            border-bottom: none;
+            display: flex;
+            margin: auto;
+            animation: hd 0.5s ease-in-out;
+            animation-play-state: paused;
+        }
+
+        .btn.active {
+            background-color: #fff;
+            width: 0;
+            height: 0;
+            border: none;
+            border-top: 10px solid #313c46;
+            border-bottom: 10px solid #313c46;
+            border-left: 16px solid #fff;
+            animation: hd2 0.3s ease-in-out;
+        }
+
+        @keyframes hd {
+            from {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes hd2 {
+            from {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.8);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="main">
+            <div class="timer">
+                <div class="number">0</div>
+                <div class="number">0</div>
+                <div class="number">0</div>
+                <div class="number">0</div>
+            </div>
+            <div class="btn"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.querySelector('.btn')
+            const numbers = document.querySelectorAll('.number')
+            let sum = 0
+            let interval = null
+            const startInterval = () => {
+                interval = setInterval(() => {
+                    sum++
+                    numbers[0].textContent = Math.floor(sum / 1000) % 10
+                    numbers[1].textContent = Math.floor(sum / 100) % 10
+                    numbers[2].textContent = Math.floor(sum / 10) % 10
+                    numbers[3].textContent = sum % 10
+                }, 1000);
+            }
+            const toggleInterval = () => {
+                if (interval === null) startInterval()
+                else{
+                    clearInterval(interval)
+                    interval = null
+                } 
+            }
+            startInterval()
+            btn.addEventListener('click', () => {
+                toggleInterval()
+                btn.style.animationPlayState = 'running'
+                btn.classList.toggle('active')
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            ul {
+                width: 200px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+
+                li:not(:nth-child(1)) {
+                    display: none;
+                }
+
+                li{
+                    border: 1px solid;
+                    margin-right: -1px;
+                    margin-bottom: -1px;
+                }
+                
+                a{
+                    color: blue;
+                }
+
+                & :hover {
+                    background-color: #ccc;
+                }
+            }
+        }
+
+        ul:hover li:not(:nth-child(1)){
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="">测试11</a></li>
+            <li><a href="">测试12</a></li>
+            <li><a href="">测试13</a></li>
+            <li><a href="">测试14</a></li>
+        </ul>
+        <ul>
+            <li><a href="">测试2</a></li>
+        </ul>
+        <ul>
+            <li><a href="">测试3</a></li>
+            <li><a href="">测试3</a></li>
+            <li><a href="">测试3</a></li>
+            <li><a href="">测试3</a></li>
+        </ul>
+        <ul>
+            <li><a href="">测试4</a></li>
+            <li><a href="">测试4</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

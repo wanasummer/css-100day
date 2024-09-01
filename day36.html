@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day36</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+        *{
+            box-sizing: border-box;
+        }
+
+        .frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        margin-top: -200px;
+        margin-left: -200px;
+        border-radius: 2px;
+        box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.1);
+        overflow: hidden;
+        background: #fff;
+        color: #333;
+        font-family: 'Open Sans', Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color:#2b3642;
+        border-radius: 5px;
+        }
+
+        a{
+            text-decoration: none;
+            color: #8398ad;
+         }
+
+        .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 80%;
+        height: 60%;
+        background-color: #ffffff;
+        }
+
+        .center .nav{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+            background-color: #3d4d5e;
+            li{
+                transition: 1.2s;
+                list-style: none;
+                padding: 10px;
+            }
+
+            a:hover{
+                color: #ffffff;
+            }
+        }
+
+        .search{
+            margin-left: auto;
+        }
+       
+        .content{
+            overflow: hidden;
+            padding: 15px;
+            height: calc(100% - 42px);
+            hr{
+                padding: 2px 0;
+                border: 0;
+                background-color: #e9e9e9;
+            }
+            p{
+                margin: 0;
+                color: #788994;
+            }
+            span{
+                display: inline-block;
+            }
+            .main{
+                height: 100%;
+            }
+            .con1{
+                margin: 15px 0;
+            }
+           
+        }
+        .main{
+            margin-right: 15px;
+        }
+        .con1{
+           .hr1{margin-right: 10%;}
+           .hr3{margin-right: 15%;}
+           .hr4{margin-right: 5%;}
+           .hr5{margin-right: 80%;}
+        }
+        .con2{
+           .hr2{margin-right: 10%;}
+           .hr3{margin-right: 5%;}
+           .hr5{margin-right: 50%;}
+        }
+
+        .active{
+            background-color: #5da2ed;
+            a{
+                color: #ffffff;
+            }
+        }
+
+        @keyframes slideOut{
+            0%{
+                transform:translateY(0);
+                opacity: 1;
+            }
+            100%{
+                transform: translateY(10%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn{
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+
+        .slide-out{
+            animation: slideOut .7s;
+        }
+
+        .slide-in{
+            animation: slideIn .3s forwards;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/9756756b2a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="frame">
+        <div class="center">
+            <ul class="nav">
+                <li class="active"><a href="#"><i class="fa-solid fa-eye"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-comments"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i></a></li>
+                <li class="search"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+            </ul>
+            <div class="content">
+                <p>Dashboard</p>
+                <div class="main">
+                    <div class="con1">
+                        <hr class="hr1">
+                        <hr class="hr2">
+                        <hr class="hr3">
+                        <hr class="hr4">
+                        <hr class="hr5">
+                     </div>
+                     <div class="con2">
+                        <hr class="hr1">
+                        <hr class="hr2">
+                        <hr class="hr3">
+                        <hr class="hr4">
+                        <hr class="hr5">
+                     </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <script>
+        const counter = (()=>{
+            let i = 0
+            return ()=> i++
+        })()
+
+        const changeContent = (index)=>{
+            const content = document.querySelector('.content')
+            const text = document.querySelector('.content p')
+            content.classList.add('slide-out')
+            // 等待动画结束后更新内容
+            content.addEventListener('animationend', () => {
+                switch (index) {
+                    case 0:
+                        text.textContent = 'Dashboard';
+                        break;
+                    case 1:
+                        text.textContent = 'Comments';
+                        break;
+                    case 2:
+                        text.textContent = 'Notifications';
+                        break;
+                    case 3:
+                        text.textContent = 'Settings';
+                        break;
+                    default:
+                        throw new Error('Error emerged');
+                }
+
+                // 移除滑动消失动画
+                content.classList.remove('slide-out');
+
+                // 确保内容是完全可见的
+               content.classList.add('slide-in')
+            }, { once: true }); // 使用 { once: true } 确保事件只触发一次
+            content.classList.remove('slide-in')
+        }
+
+        const icons = document.querySelectorAll('.nav li')
+
+        let currentIndex = 0
+        icons.forEach((ele)=>{
+            if(!ele.classList.contains('search')){
+                ele.customIndex = counter()
+                ele.addEventListener('click',()=>{
+                    if(currentIndex==ele.customIndex) return
+                    icons.forEach((e)=>e.classList.remove('active'))
+                    ele.classList.add('active')
+                    currentIndex = ele.customIndex
+                    changeContent(currentIndex)
+                })
+            }
+        })
+
+      </script>
+</body>
+</html>

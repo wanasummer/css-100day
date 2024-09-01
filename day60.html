@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day60</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h1{
+            font-size: 3.2rem;
+        }
+
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .frame{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-transform: uppercase;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2px;
+        }
+
+        .cover{
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            top: 0;
+            background-color: rgba(165, 42, 42, 0.712);
+            backdrop-filter: blur(5px);
+        }
+
+        .leave{
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="main"><h1>hover</h1></div>
+        <div class="cover"></div>
+    </div>
+    <script>
+        const frame = document.querySelector('.frame')
+        const cover = document.querySelector('.cover')
+        frame.addEventListener('mousemove',(e)=>{
+            cover.classList.remove('leave')
+            const coordination = frame.getBoundingClientRect()
+            cover.style.height = `${e.clientY - coordination.top}px`
+        })
+        frame.addEventListener('mouseleave',()=>{
+            cover.classList.add('leave')
+            cover.style.height = '50%'
+        })
+    </script>
+</body>
+</html>

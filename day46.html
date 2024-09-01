@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day46</title>
+    <style>
+        .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+            border-radius: 2px;
+            box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background: linear-gradient(blue,red);
+            color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transform: perspective(60px);
+            transform-style: preserve-3d;
+        }
+
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: 200px;
+            height: 200px;
+            animation: hd 6s alternate infinite ease-in-out;
+        }
+        
+        .ring .dot {
+            opacity: calc(1 - var(--ring) * 0.1);
+        }
+
+        .dot {
+            position: absolute;
+            top: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            transform-origin: 100px 0;
+            rotate: calc(var(--dot) * 30deg);
+        }
+
+        @keyframes hd {
+            from{
+                transform: scale(calc(1 - var(--ring) * 0.15)) rotate(calc((var(--ring) - 1) * 5deg));
+            }
+            to{
+                transform: scale(calc(1 - var(--ring) * 0.05)) rotate(calc(360deg + (var(--ring) - 1) * 10deg));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame"></div>
+    <script>
+        const frame = document.querySelector('.frame')
+        for (let i = 1; i <= 6; i++) {
+            const ring = document.createElement("div")
+            ring.classList.add('ring')
+            ring.style.setProperty('--ring',`${i}`)
+            for (let j = 1; j <= 12; j++) {
+                const dot = document.createElement('div')
+                dot.classList.add('dot')
+                dot.style.setProperty('--dot',`${j}`)
+                ring.appendChild(dot)
+            }
+            frame.appendChild(ring)
+        }
+    </script>
+</body>
+
+</html>

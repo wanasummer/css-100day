@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day53</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            height: 100vh;
+        }
+
+        .frame{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background: #88cb88;
+            display: grid;
+            place-items: center;
+
+        }
+
+        .main{
+            width: 300px;
+            height: 40px;
+            background-color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        input{
+            width: 100%;
+            -webkit-appearance: none;
+        }
+
+        input::-webkit-slider-runnable-track{
+            background-color: #7ad175;
+            height: 5px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4); 
+        }
+
+        input::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            cursor: pointer;
+            background: #fff url(https://100dayscss.com/codepen/slider-thumb.png) no-repeat center;
+            background-size: 50%;
+            border-radius: 50%;
+            border: 2px solid #7ad175;
+            height: 25px;
+            width: 25px;
+            margin-top: -10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="main">
+            <input type="range">
+        </div>
+    </div>
+    <script>
+        const input = document.querySelector('input')
+        const frame = document.querySelector('.frame')
+        let c = 136
+        let ov = +input.value
+        input.addEventListener('input',()=>{
+           let tmp
+           tmp = c + ov - input.value
+           frame.style.background = `#${tmp.toString(16)}cb${tmp.toString(16)}`
+        })
+    </script>
+</body>
+</html>

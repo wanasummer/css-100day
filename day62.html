@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day62</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all .3s ease-in-out;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        hr {
+            border-style: solid;
+            border-color: #e4e4e4;
+            border-width: 3px 0 0 0;
+            margin: 8px 10px 0px 10px;
+        }
+
+        .frame {
+            width: 400px;
+            height: 400px;
+            background-color: #e9edef;
+        }
+
+        .up {
+            height: 170px;
+            margin: 30px 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .price {
+            background-color: #fff;
+            flex: 1;
+            margin: 5px;
+            border-radius: 2px;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .price:hover {
+            scale: 1.1;
+        }
+
+        .price:hover .title {
+            background-color: #27a6d2;
+        }
+
+        .price:hover .content h3 {
+            color: #27a6d2;
+        }
+
+        .price:hover .content p {
+            color: #27a6d2;
+        }
+
+        .price .title {
+            height: 35px;
+            background-color: #7dd0ed;
+            text-transform: capitalize;
+            color: #fff;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .price .content {
+            text-align: center;
+        }
+
+        .price .content h3 {
+            color: #5e5e5e;
+            margin-top: 10px;
+            font-size: 28px;
+        }
+
+        .price .content p {
+            font-size: 12px;
+            color: #777777;
+            margin-bottom: 10px;
+        }
+
+        .price .content .placeholder hr:nth-child(1) {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        .price .content .placeholder hr:nth-child(2) {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .price .content .placeholder hr:nth-child(3) {
+            margin-left: 17px;
+            margin-right: 17px;
+        }
+
+        .price .content .placeholder hr:nth-child(4) {
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+
+        .down {
+            height: 150px;
+            margin: 0 10px;
+            background-color: #fff;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            overflow: hidden;
+            padding-top: 10px;
+        }
+
+        .down .main {
+            margin: 10px;
+        }
+
+        .down .main .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #7c7c7c;
+            font-size: 12px;
+        }
+
+        .down .main .bar {
+            position: relative;
+            height: 10px;
+            background-color: #e9edef;
+            border-radius: 15px;
+            margin-top: 1px;
+        }
+
+        .down .main .cover {
+            position: relative;
+            height: 10px;
+            float: left;
+            background-color: #7dd0ed;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            top: -10px;
+            width: 0%;
+        }
+
+        .down .main .cover.active-1 {
+            width: 5%;
+        }
+
+        .down .main .cover.active-2 {
+            width: 50%;
+        }
+
+        .down .main .cover.active-3 {
+            width: 100%;
+            border-radius: 15px;
+        }
+        
+        .down .main .cover-1.active-4 {
+            width: 30%;
+        }
+        
+        .down .main .cover-2.active-5 {
+            width: 70%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="up">
+            <div class="price card-1">
+                <div class="title">basic</div>
+                <div class="content">
+                    <h3>$5</h3>
+                    <p>per month</p>
+                    <div class="placeholder">
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="price card-2">
+                <div class="title">pro</div>
+                <div class="content">
+                    <h3>$10</h3>
+                    <p>per month</p>
+                    <div class="placeholder">
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="price card-3">
+                <div class="title">premium</div>
+                <div class="content">
+                    <h3>$20</h3>
+                    <p>per month</p>
+                    <div class="placeholder">
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="down">
+            <div class="main">
+                <div class="content">
+                    <div class="left">5 Users</div>
+                    <div class="right">100 Users</div>
+                </div>
+                <div class="bar"></div>
+                <div class="cover cover-1"></div>
+            </div>
+            <div class="main">
+                <div class="content">
+                    <div class="left">20 GB</div>
+                    <div class="right">200 GB</div>
+                </div>
+                <div class="bar"></div>
+                <div class="cover cover-2"></div>
+            </div>
+            <div class="main">
+                <div class="content">
+                    <div class="left">1 Project</div>
+                    <div class="right">50 Project</div>
+                </div>
+                <div class="bar"></div>
+                <div class="cover cover-3"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const price = document.querySelectorAll('.price')
+        const cover = document.querySelectorAll('.cover')
+        for (let i = 1; i <= 3; i++) {
+            price[i-1].addEventListener('mousemove', () => {
+                for(let j = 0;j<3;j++){
+                    cover[j].classList.add(`active-${i}`)
+                    if(i===2){
+                        cover[0].classList.add('active-4')
+                        cover[1].classList.add('active-5')
+                    }
+                }
+            })
+            price[i-1].addEventListener('mouseleave', () => {
+                cover.forEach((item) => {
+                    item.classList.remove(`active-${i}`)
+                    if(i===2){
+                        cover[0].classList.remove('active-4')
+                        cover[1].classList.remove('active-5')
+                    }
+                })
+            })
+        }
+
+    </script>
+</body>
+
+</html>

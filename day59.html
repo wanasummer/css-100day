@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day59</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans';
+            transition: all 1s ease-in-out;
+        }
+        .frame{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: 400px;
+            height: 400px;
+            background-image: url('https://100dayscss.com/codepen/slice-image-1.jpg');
+            background-position: center;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .frame:hover .main{
+            opacity: 1;
+        }
+
+        .frame:hover .main .slice:nth-child(even){
+            transform: translateY(0);
+        } 
+        
+        .frame:hover .main .slice:nth-child(odd){
+            transform: translateY(0);
+        }
+
+        .frame:hover .title h1{
+            transform: translateX(-20px);
+        }
+        
+        .frame:hover .title h3{
+            transform: translateX(20px);
+        }
+
+        .title{
+            text-align: center;
+            color: #fff;
+            text-transform: uppercase;
+            h1{
+                font-size: 54px;
+            }
+            h3{
+                font-size: 32px;
+            }
+        }
+
+        .main{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+        }
+
+        .slice{
+           height: 100%;
+           flex: 1;
+           background-size: cover;
+           background-image: url('https://100dayscss.com/codepen/slice-image-2.jpg');
+        }
+
+        .slice:nth-child(even){
+            transform: translateY(-40px);
+        }
+        
+        .slice:nth-child(odd){
+            transform: translateY(40px);
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="title">
+            <h1>slice</h1>
+            <h3>transition</h3>
+        </div>
+        <div class="main">
+            <div class="slice slice1"></div>
+            <div class="slice slice2"></div>
+            <div class="slice slice3"></div>
+            <div class="slice slice4"></div>
+            <div class="slice slice5"></div>
+            <div class="slice slice6"></div>
+            <div class="slice slice7"></div>
+            <div class="slice slice8"></div>
+        </div>
+    </div>
+    <script>
+        const slice = document.querySelectorAll('.slice')
+        for(let i in slice){
+            if(i<=7) slice[i].style.backgroundPositionX = `-${50*i}px` 
+        }
+    </script>
+</body>
+</html>

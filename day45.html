@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day45</title>
+    <style>
+         .frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+            border-radius: 2px;
+            box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: #fff;
+            color: #333;
+            font-family: 'Open Sans', Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #5ca4ea;
+        }
+
+        .center{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 58px;
+            width: 180px;
+            color: #e3effa;
+            text-align: center;
+            line-height: 58px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .center:hover + .border .bg-line{
+            fill: #4F95DA;
+        }
+        
+        .center:hover + .border .hl-line{
+            stroke-dashoffset: -480;
+        }
+
+        .border{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            stroke-width: 1;
+            fill: none;
+        }
+
+        .bg-line{
+            fill: #5CA4EA;
+            stroke: #91C9FF;
+            transition: all 0.8s ease-in-out;
+        }
+
+        .hl-line{
+            stroke: #fff;
+            stroke-dasharray: 40 480;
+            stroke-dashoffset: 40;
+            transition: all 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="center">HOVER ME</div>
+        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+            <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+            <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+        </svg>
+    </div>
+</body>
+</html>
