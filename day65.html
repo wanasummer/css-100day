@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day65</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .frame {
+            position: relative;
+            background-color: #1f91dd;
+            width: 400px;
+            height: 400px;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .square {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 2px solid #fff;
+        }
+
+        .square-1{
+            animation: hd 3s ease-in-out alternate infinite;
+        }
+        
+        @keyframes hd {
+            to {
+                rotate: calc(180deg + var(--square) * 10deg);
+                border-radius: 50%;
+                height: 150px;
+                border-width: 1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="square square-1"></div>
+        <div class="square square-2"></div>
+        <div class="square square-3"></div>
+        <div class="square square-4"></div>
+        <div class="square square-5"></div>
+        <div class="square square-6"></div>
+        <div class="square square-7"></div>
+        <div class="square square-8"></div>
+        <div class="square square-9"></div>
+        <div class="square square-10"></div>
+        <div class="square square-11"></div>
+        <div class="square square-12"></div>
+        <div class="square square-13"></div>
+        <div class="square square-14"></div>
+        <div class="square square-15"></div>
+        <div class="square square-16"></div>
+        <div class="square square-17"></div>
+        <div class="square square-18"></div>
+    </div>
+    <script>
+        const square = document.querySelectorAll('.square')
+        let delay = 0
+        let index = 0
+        square.forEach((item)=>{
+            item.style.setProperty('--square',index++)
+            item.style.animation = `hd 3s ease-in-out alternate infinite ${delay}s`
+            delay += 0.015
+        })
+    </script>
+</body>
+
+</html>
